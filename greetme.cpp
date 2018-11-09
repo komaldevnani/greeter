@@ -18,20 +18,39 @@ void showInstructions()
     cout<<"Enter '-n' as argument if not signed in before\n\t";
     cout<<"eg.\t./a.out -n \n";
     cout<<"or zero argument to greet you\n\t";
-    cout<<"eg. \t ./a.out ";
+    cout<<"eg. \t ./a.out \n";
+    cout<<"Enter '-h' for help\n";
+    cout<<"Enter '-r' to reset name";
 }
 
 int main(int argc,char* argv[])
 {
     char name[50];
-    if(argc == 2 && strcmp(argv[1],"-n")== 0)
+    if(argc == 2 )
     {
-        cout<<"Whats your name:";
-        // TODO: if name is empty, then do something
-        // TODO: remove unnecessary spaces
-        cin.getline(name,50);
-        cout<<"Hello "<<name;
-        writeToFile(name);
+        if(strcmp(argv[1],"-n")== 0)
+        {
+            cout<<"Whats your name: ";
+            // TODO: if name is empty, then do something
+            // TODO: remove unnecessary spaces
+            cin.getline(name,50);
+            cout<<"Hello "<<name;
+            writeToFile(name);
+        }
+        else if(strcmp(argv[1],"-h")==0)
+        {
+            showInstructions();
+        }
+        else if(strcmp(argv[1],"-r")== 0)
+        {
+            remove(FILENAME);
+            cout<<"Name is removed";
+        }
+        else
+        {
+            cout<<"Invalid argument";
+            showInstructions();
+        }
     }
     else if(argc == 1)
     {
