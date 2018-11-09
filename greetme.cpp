@@ -4,6 +4,23 @@
 #define FILENAME "Name.txt"
 
 using namespace std;
+
+void writeToFile(char *name)
+{
+    ofstream file;
+    file.open(FILENAME);
+    file<<name;
+    file.close();
+}
+
+void showInstructions()
+{
+    cout<<"Enter '-n' as argument if not signed in before\n\t";
+    cout<<"eg.\t./a.out -n \n";
+    cout<<"or zero argument to greet you\n\t";
+    cout<<"eg. \t ./a.out ";
+}
+
 int main(int argc,char* argv[])
 {
     char name[50];
@@ -14,15 +31,12 @@ int main(int argc,char* argv[])
         // TODO: remove unnecessary spaces
         cin.getline(name,50);
         cout<<"Hello "<<name;
-        fstream file;
-        file.open(FILENAME, ios::out);
-        file<<name;
-        file.close();
+        writeToFile(name);
     }
     else if(argc == 1)
     {
-        fstream file;
-        file.open(FILENAME, ios::in);
+        ifstream file;
+        file.open(FILENAME);
         if(!file)      //file doesnt exists
         {
             cout<<"Sorry, I dont know your name"<<endl;
@@ -39,6 +53,6 @@ int main(int argc,char* argv[])
     else
     {
         cout<<"Invalid arguments "<<endl;
-        cout<<"Enter '-n' as argument if not signed in before  \n\t eg.\t./a.out -n \n or zero argument to greet you\n\t eg. \t ./a.out ";
+        showInstructions();
     }
 }
