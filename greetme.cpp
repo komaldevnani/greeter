@@ -58,8 +58,8 @@ int main(int argc,char* argv[])
         file.open(FILENAME);
         if(!file)      //file doesnt exists
         {
-            cout<<"Sorry, I dont know your name"<<endl;
-            cout<<"Give a argument '-n' to enter name";
+            cout<<"Welcome, you could give your name to greet you "<<endl;
+            cout<<"Give a argument '-n' with greetme to enter name";
         }
         else
         {   
